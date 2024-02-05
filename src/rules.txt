@@ -1,0 +1,36 @@
+// const cartValue = 10; (example)
+
+// cartValue < 10 -> smallOrderSurcharge
+// smallOrderSurcharge = 10 - cartValue
+
+
+// const deliveryDistance = 1600; (example)
+// const extraDistance = deliveryDistance - 1000;
+// const extraDistanceChunksCount = Math.ceil(extraDistance / 500);
+// const baseDeliveryFee = 2;
+// const extraDistanceFee = 1;
+// deliveryDistance > 1000 -> deliveryFee = baseDeliveryFee + extraDistanceChunksCount * extraDistanceFee
+
+// let cartItemsCount = 10; // example
+// const maxCartItemsCountNoSurcharge = 4;
+
+// const extraItemsCount = cartItemsCount - maxCartItemsCountNoSurcharge; - how many items are above the limit of 4
+// extraItemsFee = 0.5;
+// cartItemsCount >= 5 -> deliveryFee += extraItemsCount * extraItemsFee
+
+// const bulkFee = 1.2;
+
+// cartItemsCount > 12 -> deliveryFee += bulkFee - adding bulk fee for orders above 12 items
+
+// deliveryFee > 15 -> "Sorry, total delivery fee cannot be more than 15€. Please place a second order."
+
+// cartValue >= 200 -> deliveryFee = 0
+
+// const orderTime = 12; // example
+
+// orderDay = "Friday" // example
+
+// orderTime >= 15 && orderTime < 19 && orderDay === "Friday" -> deliveryFee *= 1.2 - adding 20% fee for orders between 15 and 19 on Fridays
+// timezone of the browser will be used in the frontend solution 
+
+
