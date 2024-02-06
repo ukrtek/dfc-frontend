@@ -38,11 +38,16 @@ function Form() {
 	const calculateDeliveryFee = () => {
 
 		let fee = 0;
-		if (cartValue >= 200) {
+		// Ensure all values are numbers
+		const numCartValue = Number(cartValue);
+		const numDeliveryDistance = Number(deliveryDistance);
+		const numNumberOfItems = Number(numberOfItems);
+
+		if (numCartValue >= 200) {
 			return fee;
 		}
 
-		fee = 2; // starting from base fee
+		fee = 2; // Starting from base fee
 
 		// small order surcharge
 		if (cartValue < 10) {
@@ -76,12 +81,7 @@ function Form() {
 			fee *= 1.2;
 		};
 
-		// deliveryFee > 15 -> "Sorry, total delivery fee cannot be more than 15€. Please place a second order."
-		if (fee > 15) {
-			fee = 15;
-		};
-
-		return fee;
+		return fee > 15 ? 15 : fee;
 	};
 
 	// handle form submit
