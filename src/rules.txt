@@ -19,7 +19,6 @@
 // cartItemsCount >= 5 -> deliveryFee += extraItemsCount * extraItemsFee
 
 // const bulkFee = 1.2;
-
 // cartItemsCount > 12 -> deliveryFee += bulkFee - adding bulk fee for orders above 12 items
 
 // deliveryFee > 15 -> "Sorry, total delivery fee cannot be more than 15€. Please place a second order."

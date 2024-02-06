@@ -35,42 +35,88 @@ function Form() {
 		setOrderTime(event.target.value);
 	};
 
+	const calculateDeliveryFee = () => {
+
+		let fee = 0;
+		if (cartValue >= 200) {
+			return fee;
+		}
+
+		fee = 2; // starting from base fee
+
+		// small order surcharge
+		if (cartValue < 10) {
+			fee += 10 - cartValue;
+		};
+
+		// distance surcharge
+		if (deliveryDistance > 1000) {
+			const extraDistance = deliveryDistance - 1000;
+			const extraDistanceChunksCount = Math.ceil(extraDistance / 500);
+			fee += extraDistanceChunksCount;
+		};
+
+		// extra items surcharge
+		if (numberOfItems > 4) {
+			const extraItemsCount = numberOfItems - 4;
+			fee += extraItemsCount * 0.5;
+		};
+
+		// bulk surcharge
+		if (numberOfItems > 12) {
+			fee += 1.2;
+		};
+
+		// Friday evening surcharge
+		const orderDateTime = new Date(`${orderDate}T${orderTime}`);
+
+		const isRushHour = orderDateTime.getHours() >= 15 && orderDateTime.getHours() < 19;
+
+		if (orderDateTime.getDay() === 5 && isRushHour) {
+			fee *= 1.2;
+		};
+
+		// deliveryFee > 15 -> "Sorry, total delivery fee cannot be more than 15€. Please place a second order."
+		if (fee > 15) {
+			fee = 15;
+		};
+
+		return fee;
+	};
+
 	// handle form submit
 	const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 			event.preventDefault();
-			console.log('Form submitted');
-
-			// calculation logic for delivery fee
+			const fee = calculateDeliveryFee();
+			setDeliveryFee(fee);
 	};
-
-
 
 	return (
 		<form onSubmit={handleFormSubmit}>
 			<h1>Delivery fee calculator</h1>
 			<div>
 				<label>Cart value (€): </label>
-				<input type="number" placeholder="0"></input>
+				<input type="number" placeholder="0" onChange={handleCartValueChange}></input>
 			</div>
 
 			<div>
 				<label>Delivery distance (m): </label>
-				<input type="number" placeholder="0" min="1"></input>
+				<input type="number" placeholder="0" min="1" onChange={handleDeliveryDistanceChange}></input>
 			</div>
 
 			<div>
 				<label>Number of items: </label>
-				<input type="number" placeholder="0" min="1"></input>
+				<input type="number" placeholder="0" min="1" onChange={handleNumberOfItemsChange}></input>
 			</div>
 
 			<div>
 				<label>Order date: </label>
-				<input type="date"></input>
+				<input type="date" onChange={handleOrderDateChange}></input>
 			</div>
 
 			<div>
 				<label>Order time: </label>
-				<input type="time"></input>
+				<input type="time" onChange={handleOrderTimeChange}></input>
 			</div>
 
 			<div>
@@ -79,9 +125,8 @@ function Form() {
 
 			<div>
 				<label>Delivery fee (€): </label>
-				<span>0</span>
+				<span>{deliveryFee}</span>
 			</div>
-
 
 		</form>
 	);
