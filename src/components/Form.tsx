@@ -53,20 +53,6 @@ function Form() {
 		return Math.min(fee, 15);
 	};
 
-		
-
-		// Friday evening surcharge
-		
-
-		
-
-		if (orderDateTime.getDay() === 5 && isRushHour) {
-			fee *= 1.2;
-		};
-
-		return fee > 15 ? 15 : fee;
-	};
-
 	// handle form submit
 	const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 			event.preventDefault();
