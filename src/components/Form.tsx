@@ -36,46 +36,29 @@ function Form() {
 	};
 
 	const calculateDeliveryFee = () => {
+		let fee = cartValue >= 200 ? 0 : 2;
 
-		let fee = 0;
-		// Ensure all values are numbers
-		const numCartValue = Number(cartValue);
-		const numDeliveryDistance = Number(deliveryDistance);
-		const numNumberOfItems = Number(numberOfItems);
+		if (cartValue < 10) fee += 10 - cartValue; // small order surcharge
+		if (deliveryDistance > 1000) fee += Math.ceil((deliveryDistance - 1000) / 500); // extra distance surcharge
+		if (numberOfItems > 4) fee += (numberOfItems - 4) * 0.5; // large order surcharge
+		if (numberOfItems > 12) fee += 1.2; // bulk surcharge
 
-		if (numCartValue >= 200) {
-			return fee;
+
+		if (orderDate && orderTime) {
+			const orderDateTime = new Date(`${orderDate}T${orderTime}`);
+			const isRushHour = orderDateTime.getHours() >= 15 && orderDateTime.getHours() < 19;
+			if (orderDateTime.getDay() == 5 && isRushHour) fee *= 1.2;
 		}
 
-		fee = 2; // Starting from base fee
+		return Math.min(fee, 15);
+	};
 
-		// small order surcharge
-		if (cartValue < 10) {
-			fee += 10 - cartValue;
-		};
-
-		// distance surcharge
-		if (deliveryDistance > 1000) {
-			const extraDistance = deliveryDistance - 1000;
-			const extraDistanceChunksCount = Math.ceil(extraDistance / 500);
-			fee += extraDistanceChunksCount;
-		};
-
-		// extra items surcharge
-		if (numberOfItems > 4) {
-			const extraItemsCount = numberOfItems - 4;
-			fee += extraItemsCount * 0.5;
-		};
-
-		// bulk surcharge
-		if (numberOfItems > 12) {
-			fee += 1.2;
-		};
+		
 
 		// Friday evening surcharge
-		const orderDateTime = new Date(`${orderDate}T${orderTime}`);
+		
 
-		const isRushHour = orderDateTime.getHours() >= 15 && orderDateTime.getHours() < 19;
+		
 
 		if (orderDateTime.getDay() === 5 && isRushHour) {
 			fee *= 1.2;
