@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './Form.css';
 
 function Form() {
 	// state variables with types
@@ -62,40 +63,46 @@ function Form() {
 
 	return (
 		<form onSubmit={handleFormSubmit}>
-			<h1>Delivery fee calculator</h1>
-			<div>
-				<label>Cart value (€): </label>
+
+			<header>
+				<h1>Delivery fee calculator</h1>
+			</header>
+
+			<div className='main'>
+				<div>
+				<label className='input-label'>Cart value (€): </label>
 				<input type="number" placeholder="0" onChange={handleCartValueChange}></input>
-			</div>
+				</div>
 
-			<div>
-				<label>Delivery distance (m): </label>
-				<input type="number" placeholder="0" min="1" onChange={handleDeliveryDistanceChange}></input>
-			</div>
+				<div>
+					<label className='input-label'>Delivery distance (m): </label>
+					<input type="number" placeholder="0" min="1" onChange={handleDeliveryDistanceChange}></input>
+				</div>
 
-			<div>
-				<label>Number of items: </label>
-				<input type="number" placeholder="0" min="1" onChange={handleNumberOfItemsChange}></input>
-			</div>
+				<div>
+					<label className='input-label'>Number of items: </label>
+					<input type="number" placeholder="0" min="1" onChange={handleNumberOfItemsChange}></input>
+				</div>
 
-			<div>
-				<label>Order date: </label>
-				<input type="date" onChange={handleOrderDateChange}></input>
-			</div>
+				<div>
+					<label className='input-label'>Order date: </label>
+					<input type="date" onChange={handleOrderDateChange}></input>
+				</div>
 
-			<div>
-				<label>Order time: </label>
-				<input type="time" onChange={handleOrderTimeChange}></input>
-			</div>
+				<div>
+					<label className='input-label'>Order time: </label>
+					<input type="time" onChange={handleOrderTimeChange}></input>
+				</div>
 
-			<div>
-				<button type="submit">Calculate!</button>
-			</div>
+				<div>
+					<button id='calculate' type="submit">Calculate!</button>
+				</div>
 
-			<div>
-				<label>Delivery fee (€): </label>
-				<span>{deliveryFee}</span>
-			</div>
+				<div>
+					<label id='result'>Delivery fee (€): </label>
+					<span id='result'>{deliveryFee}</span>
+				</div>
+			</div>			
 
 		</form>
 	);

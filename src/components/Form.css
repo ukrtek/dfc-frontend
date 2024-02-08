@@ -1,0 +1,66 @@
+header {
+	background-color: rgb(89, 180, 150);
+	display: flex;
+	justify-content: left; /* Horizontal centering */
+	color: white;
+
+}
+
+h1 {
+	text-align: left;
+	vertical-align: middle;
+	font-size: 1.5em;
+	padding: 0.3em;
+	padding-left: 2em;
+}
+
+form {
+	width: 100%;
+}
+
+.main {
+	padding-top: 1.5em;
+	padding-left: 5em;
+}
+
+input {
+	width: 10em;
+	margin-bottom: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 1em;
+}
+
+input[type="date"],
+input[type="time"] {
+	width: 12.35em;
+	font-size: 1em;
+
+}
+
+button {
+	padding: 10px;
+	border: 0;
+	border-radius: 5px;
+	background-color: mediumspringgreen;
+	cursor: pointer;
+	font-size: 1.2em;
+}
+
+button:hover {
+	background-color: mediumseagreen;
+}
+
+button:active {
+	background-color: rgb(44, 132, 83);
+}
+
+div {
+	margin-bottom: 10px;
+}
+
+.input-label {
+	display: block;
+	margin-bottom: 5px;
+}
