@@ -68,39 +68,40 @@ function Form() {
 				<h1>Delivery fee calculator</h1>
 			</header>
 
-			<div className='main'>
-				<div>
-				<label className='input-label'>Cart value (€): </label>
-				<input type="number" placeholder="0" onChange={handleCartValueChange}></input>
+			<div className='form-container'>
+
+				<div className='form-row'>
+				<label htmlFor='cart-value'>Cart value (€): </label>
+				<input type="number" id='cart-value' placeholder="0" onChange={handleCartValueChange}></input>
 				</div>
 
-				<div>
-					<label className='input-label'>Delivery distance (m): </label>
-					<input type="number" placeholder="0" min="1" onChange={handleDeliveryDistanceChange}></input>
+				<div className='form-row'>
+					<label htmlFor='distance'>Delivery distance (m): </label>
+					<input type="number" id='distance' placeholder="0" min="1" onChange={handleDeliveryDistanceChange}></input>
 				</div>
 
-				<div>
-					<label className='input-label'>Number of items: </label>
-					<input type="number" placeholder="0" min="1" onChange={handleNumberOfItemsChange}></input>
+				<div className='form-row'>
+					<label htmlFor='number-of-items'>Number of items: </label>
+					<input type="number" id='number-of-items' placeholder="0" min="1" onChange={handleNumberOfItemsChange}></input>
 				</div>
 
-				<div>
-					<label className='input-label'>Order date: </label>
-					<input type="date" onChange={handleOrderDateChange}></input>
+				<div className='form-row'>
+					<label htmlFor='date'>Order date: </label>
+					<input type="date" id='order-date' onChange={handleOrderDateChange}></input>
 				</div>
 
-				<div>
-					<label className='input-label'>Order time: </label>
-					<input type="time" onChange={handleOrderTimeChange}></input>
+				<div className='form-row'>
+					<label htmlFor='time'>Order time: </label>
+					<input type="time" id='order-time' onChange={handleOrderTimeChange}></input>
 				</div>
 
-				<div>
+				<div className='form-row'>
 					<button id='calculate' type="submit">Calculate!</button>
 				</div>
 
-				<div>
-					<label id='result'>Delivery fee (€): </label>
-					<span id='result'>{deliveryFee}</span>
+				<div id='result'>
+					<label>Delivery fee (€): </label>
+					<span>{deliveryFee}</span>
 				</div>
 			</div>			
 
